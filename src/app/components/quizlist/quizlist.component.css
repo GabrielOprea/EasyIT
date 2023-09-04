@@ -1,0 +1,28 @@
+.text{
+    font-family: verdana;
+    font-size: 14px;
+    margin-top: 3%;
+    color: rgb(58, 11, 11); 
+    }
+    
+    .btnRegister{
+        margin-top: 5%;
+        margin-bottom: 3%;
+        margin-right: 34%;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 1%;
+        border: 1px solid rgb(37, 7, 7);
+        background: rgb(37, 7, 7);
+        color: #fff;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 20px;
+        width: 30%;
+        cursor: pointer;
+    }
+
+    .btnRegister:hover {
+        scale: 1.05;
+        box-shadow: 5px 5px 35px 8px rgb(147, 158, 147); 
+    }

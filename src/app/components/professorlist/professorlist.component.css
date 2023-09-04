@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Merienda+One&family=Staatliches&display=swap');
+
+.row
+  {
+    margin-left: 10%;
+    margin-top: 3%;
+  }
+  .column {
+    float: left;
+    width: 50%;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+  }
+  #bloodCards
+  {
+    background-color: white;
+
+    margin-right: 5%;
+    margin-bottom: 5%;
+    border-radius: 15px;
+    padding: 0px;
+    width: 40%;
+    height: 60%;
+    transition: transform .2s;
+    box-shadow: 5px 5px 25px 8px rgb(147, 158, 147);
+  }
+
+  /* #bloodCards:hover
+  {
+    transform: scale(1.05);
+    cursor: pointer;
+  } */
+#searchtxt
+{
+  width: 20%;
+  float: right;
+}
+.img-block{
+    width: 40%;
+    height: 200px;
+    border-radius: 15px;
+    background-color: white;
+}
+.circle{
+    background-color: rgb(22, 121, 72);
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+}
+.bloodimg
+{
+    margin-left: 13%;
+    margin-top: 8%;
+}
+.heading-text
+{
+    font-weight: bolder;
+    font-size: 40px;
+    margin-top: 1%;
+    color: #440707;
+    font-family: 'Aladin', cursive;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.bloodimg
+{
+  float: left;
+  margin-top: 3%;
+  margin-right: 3%;
+}
+.card-block
+{
+  flex: 1;
+}
+.text{
+font-family: verdana;
+font-size: 14px;
+margin-top: 1.5%;
+}
+
+.status-btn
+{
+    padding: 4px 30px 5px 30px;
+    background-color: #440707;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    vertical-align: middle;
+    width: 240px;
+    font-weight: bold;
+
+}
+.status-btn1
+{
+    background-color: #440707;
+    padding: 4px 30px 5px 30px;
+    color: white;
+    vertical-align: middle;
+    border-radius: 15px;
+    width: 200px;
+    text-align: center;
+    font-weight: bold;
+}
+.status-btn2
+{
+    background-color: #440707;
+    padding: 4px 30px 5px 30px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 15px;
+    width: 200px;
+    font-weight: bold;
+
+}
+
+.status {
+  position: absolute;
+  bottom: 8%;
+}

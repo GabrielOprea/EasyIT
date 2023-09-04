@@ -1,0 +1,181 @@
+
+<div class="content">
+    <div class="header" id="header">
+      <div class="nav">
+        <div class="logo">
+          <button class='fa fa-bars display-sidebar' *ngIf="loggedUser !== ''" (click)="showMenu()"></button>
+          <img src="https://elearningindustry.com/wp-content/uploads/2016/08/organization-ready-for-elearning.png" style="border-radius: 50%; background-color: white;" width="50" height="40">
+          <h4 style="margin-left: 3%; margin-top: 1%; font-family: 'Aladin', cursive; color: rgb(248, 247, 247);">EasyIT</h4><br>
+        </div>
+       <div class="switchs">
+        <button *ngIf="_router.url !== '/'" style="font-weight: bold;" class="log" id="log" [routerLink]="['']"><i class="fa fa-home"></i> Home</button>
+        <button *ngIf="_router.url == '/'" style="font-weight: bold;" class="log-current" id="log-current" [routerLink]="['']"><i class="fa fa-home"></i> Home</button>
+
+        <button *ngIf="_router.url !== '/dashboard' && _router.url !== '/admindashboard' && loggedUser !== ''" style="font-weight: bold;" class="log" id="log" (click) = "navigateHome()"><i class="fa fa-th"></i> Dashboard</button>
+        <button *ngIf="(_router.url == '/dashboard' || _router.url == '/admindashboard') && loggedUser !== ''" style="font-weight: bold;" class="log-current" id="log-current" (click) = "navigateHome()"><i class="fa fa-th"></i> Dashboard</button>
+
+        <button *ngIf= "loggedUser !== ''" style="font-weight: bold;" class="log" id="log" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button>
+        <div class="dropdown" *ngIf="!_router.url.startsWith('/login') && loggedUser === ''">
+          <button  *ngIf="!_router.url.startsWith('/login')" style="font-weight: bold;" class="log" id="log"><i class="fa fa-sign-in"></i> Login</button>
+
+          <div class="dropdown-content">
+            <div class="detail" (click)="login('admin')" style="background-color: rgb(146, 107, 146);">
+                <h4 style="font-family: monospace; font-size: 16px; margin-top: 5%; color: white;"> Admin </h4>
+                <div class="circle" style="border-radius: 50%; background-color: white; padding: 10%;">
+                    <img src="https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg" width="30" height="30">
+                </div>
+            </div>
+            <div class="detail" (click)="login('professor')" style="background-color: rgb(146, 107, 146);">
+              <h4 style="font-family: monospace; font-size: 16px; margin-top: 5%; color: white;"> Instructor </h4>
+              <div class="circle" style="border-radius: 50%; background-color: white; padding: 10%;">
+                  <img src="https://cdn1.iconfinder.com/data/icons/flat-education-icons-1/512/37-512.png" width="30" height="30">
+              </div>
+          </div>
+          <div class="detail" (click)="login('user')" style="background-color: rgb(146, 107, 146);">
+            <h4 style="font-family: monospace; font-size: 16px; margin-top: 5%; color: white;"> User </h4>
+            <div class="circle" style="border-radius: 50%; background-color: white; padding: 10%;">
+                <img src="https://cdn-icons-png.flaticon.com/256/666/666201.png" width="30" height="30">
+            </div>
+          </div>
+          </div>
+        </div>
+        <button  *ngIf="_router.url.startsWith('/login')" style="font-weight: bold;" class="log-current" id="log-current"><i class="fa fa-sign-in"></i> Login</button>
+
+        <div class="dropdown"  *ngIf="!_router.url.startsWith('/registration')  && loggedUser === ''">
+          <button  *ngIf="!_router.url.startsWith('/registration')" style="font-weight: bold;" class="log" id="log"><i class="fa fa-user-plus"></i>  Sign Up</button>
+          <div class="dropdown-content">
+            <div class="detail" (click)="registration('professor')" style="background-color: rgb(146, 107, 146);">
+              <h4 style="font-family: monospace; font-size: 16px; margin-top: 5%; color: white;"> Instructor </h4>
+              <div class="circle" style="border-radius: 50%; background-color: white; padding: 10%;">
+                  <img src="https://cdn1.iconfinder.com/data/icons/flat-education-icons-1/512/37-512.png" width="30" height="30">
+              </div>
+          </div>
+          <div class="detail" (click)="registration('user')" style="background-color: rgb(146, 107, 146);">
+            <h4 style="font-family: monospace; font-size: 16px; margin-top: 5%; color: white;"> Student </h4>
+            <div class="circle" style="border-radius: 50%; background-color: white; padding: 10%;">
+                <img src="https://cdn-icons-png.flaticon.com/256/666/666201.png" width="30" height="30">
+            </div>
+          </div>
+          </div>
+        </div>
+        <button  *ngIf="_router.url.startsWith('/registration')" style="font-weight: bold;" class="log-current" id="log-current"><i class="fa fa-user-plus"></i> Sign Up</button>
+      </div>
+    </div>
+  <br>
+  </div>
+</div>
+  <div class="sidebar">
+    <ul class="nav-list">
+      <li [routerLink]="['/edituserprofile']" *ngIf="_router.url.startsWith('/edituserprofile') && currRole === 'user'" class="li-current">
+        <a>
+          <i class='fa fa-edit'></i>
+          <span class="links_name">Edit Profile</span>
+        </a>
+      </li>
+      <li [routerLink]="['/edituserprofile']" *ngIf="!_router.url.startsWith('/edituserprofile')  && currRole === 'user'">
+        <a>
+          <i class='fa fa-edit'></i>
+          <span class="links_name">Edit Profile</span>
+        </a>
+      </li>
+      <li [routerLink]="['/editprofessorprofile']" *ngIf="_router.url.startsWith('/editprofessorprofile') && currRole === 'professor'" class="li-current">
+        <a>
+          <i class='fa fa-edit'></i>
+          <span class="links_name">Edit Profile</span>
+        </a>
+      </li>
+      <li [routerLink]="['/editprofessorprofile']" *ngIf="!_router.url.startsWith('/editprofessorprofile')  && currRole === 'professor'">
+        <a>
+          <i class='fa fa-edit'></i>
+          <span class="links_name">Edit Profile</span>
+        </a>
+      </li>
+      
+
+      <li [routerLink]="['/approveprofessor']" *ngIf="_router.url.startsWith('/approveprofessor') && currRole === 'professor'" class="li-current">
+        <a>
+          <i class='fa fa-check-square'></i>
+          <span class="links_name">Approval Status</span>
+        </a>
+      </li>
+      <li [routerLink]="['/approveprofessor']" *ngIf="!_router.url.startsWith('/approveprofessor') && currRole === 'professor'">
+        <a>
+          <i class='fa fa-check-square'></i>
+          <span class="links_name">Approval Status</span>
+        </a>
+      </li>
+      <li [routerLink]="['/addCourse']" *ngIf="_router.url.startsWith('/addCourse') && currRole === 'professor'" class="li-current">
+       <a>
+         <i class='fa fa-cart-plus' ></i>
+         <span class="links_name">Add Course</span>
+       </a>
+     </li>
+     <li [routerLink]="['/addCourse']" *ngIf="!_router.url.startsWith('/addCourse') && currRole === 'professor'">
+     <a>
+       <i class='fa fa-cart-plus' ></i>
+       <span class="links_name">Add Course</span>
+     </a>
+   </li>
+
+     <li [routerLink]="['/mycourses']" *ngIf="_router.url.startsWith('/mycourses') && currRole === 'user'" class="li-current">
+        <a>
+          <i class='fa fa-graduation-cap' ></i>
+          <span class="links_name">My Learning</span>
+        </a>
+      </li>
+      <li [routerLink]="['/mycourses']" *ngIf="!_router.url.startsWith('/mycourses') && currRole === 'user'">
+        <a>
+          <i class='fa fa-graduation-cap' ></i>
+          <span class="links_name">My Learning</span>
+        </a>
+      </li>
+      <li [routerLink]="['/mywishlist']" *ngIf="_router.url.startsWith('/mywishlist') && currRole === 'user'" class="li-current">
+        <a>
+          <i class='fa fa-heart' ></i>
+          <span class="links_name">Favourites</span>
+        </a>
+      </li>
+      <li [routerLink]="['/mywishlist']" *ngIf="!_router.url.startsWith('/mywishlist') && currRole === 'user'">
+        <a>
+          <i class='fa fa-heart' ></i>
+          <span class="links_name">Favourites</span>
+        </a>
+      </li>
+     <li [routerLink]="['/courselist']" *ngIf="_router.url.startsWith('/courselist')" class="li-current">
+       <a>
+         <i class='fa fa-list' ></i>
+         <span class="links_name">Courses</span>
+       </a>
+     </li>
+     <li [routerLink]="['/courselist']" *ngIf="!_router.url.startsWith('/courselist')">
+      <a>
+        <i class='fa fa-list' ></i>
+        <span class="links_name">Courses</span>
+      </a>
+    </li>
+     <li [routerLink]="['/professorlist']" *ngIf="_router.url.startsWith('/professorlist')" class="li-current">
+       <a>
+         <i class='fa fa-user-o' ></i>
+         <span class="links_name">Instructors</span>
+       </a>
+     </li>
+     <li [routerLink]="['/professorlist']" *ngIf="!_router.url.startsWith('/professorlist')">
+      <a>
+        <i class='fa fa-user-o' ></i>
+        <span class="links_name">Instructors</span>
+      </a>
+    </li>
+     <li [routerLink]="['/userlist']" *ngIf="_router.url.startsWith('/userlist')" class="li-current">
+       <a>
+         <i class='fa fa-user' ></i>
+         <span class="links_name">Students</span>
+       </a>
+     </li>
+     <li [routerLink]="['/userlist']" *ngIf="!_router.url.startsWith('/userlist')">
+      <a>
+        <i class='fa fa-user' ></i>
+        <span class="links_name">Students</span>
+      </a>
+    </li>
+    </ul>
+  </div>

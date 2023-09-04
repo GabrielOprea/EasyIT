@@ -1,0 +1,22 @@
+<div style="margin-top: 10%;">
+    <div id="quizedetailscard" style="margin-top: 5%; text-align: center;" *ngFor="let data of quizlist | async">
+        <div class="container"
+            style="box-shadow: 2px 2px 15px 8px rgb(147, 158, 147); max-width: 520px; border-radius: 10px; background-color: white;
+            padding: 20px;">
+            <div class="text"><b class="element" style="font-family: cursive; font-size: 28px; color: #6c1466;">{{data.quizname}}</b>
+            </div>
+            <br>
+            <div class="text" style="text-align: left; font-family: 'aladin'; font-size: 18px;"><b class="element"> No of questions: </b> {{data.noquestions}}</div>
+            <div class="text" style="text-align: left; font-family: 'aladin'; font-size: 18px;"><b class="element"> Status: </b> {{getStatus(data)}}</div>
+
+            <div style="margin-top: 7.5%; margin-bottom: 3%;">
+                <a  *ngIf="currRole=='professor'" (click)="editQuiz(data.quizid)" style="border: none; background-color: rgb(121, 91, 108); margin-right: 2%;" class="btn btn-primary">Edit Quiz</a>
+                <a   *ngIf="currRole=='user'" (click)="attemptQuiz(data.quizid)" style="border: none; background-color: rgb(58, 11, 11); " class="btn btn-primary">Attempt Quiz</a>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="currRole=='professor'" class="container" style="text-align: center; margin-top: 5%; margin-bottom: 5%;">
+    <button (click)="addQuiz()" style="margin-right: 2%; border: none; width: 300px;" class="btnRegister"><i class="fa fa-plus"></i> Add Quiz</button>
+    </div>
+</div>

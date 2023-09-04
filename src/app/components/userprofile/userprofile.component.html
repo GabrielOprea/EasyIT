@@ -1,0 +1,118 @@
+
+<div id="profilecard">
+    <div class="row">
+        <div *ngFor="let user of profileDetails | async" id="bloodCards">
+            <div class="column">
+                <a><img class="bloodimg" [src]="'assets/img/maleuser.png'" width="140" height="140"></a>    
+            </div>  
+            <div class="column"> 
+            <div class="card-block">
+                <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> {{user.username}} </b>  <small style="font-weight: bold;"> ({{user.userid}}) </small></div>
+                <br>
+                <div class="text"><b class="element"> Phone number: </b>  {{user.mobile}} </div>
+                <div class="text"><b class="element"> University: </b> {{user.profession}} </div>
+                <div class="text"><b class="element"> Email: </b> {{user.email}}</div>
+                <br>
+                <div class="btndiv"><button class="editbtn" (click)="editProfile()"><i class="fa fa-edit"></i> edit</button></div>
+                <small id="message" *ngIf="temp === true" style="text-align: center; margin-top: 3%; color: green;"><b>Profile Updated Successfully!</b></small> 
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+<div class="container register" id="profileform">
+    <div class="row">
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" *ngFor="let user of profileDetails | async">
+                    <h3 class="textual">Update Profile</h3>
+                    <small *ngIf="temp === true" style="text-align: center; color: green;"><b>Profile Updated Successfully!</b></small>  
+
+                <form #Updateform="ngForm" style="margin-top: -15%;" (ngSubmit)="updateUserProfile()">
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Student Name *" name="username" [(ngModel)]="user.username" required 
+                                #username="ngModel"
+                                [class.is-invalid]="username.invalid && username.touched">
+                                <small class="text-dangerous" [class.d-none]="username.valid || username.untouched"><b>Required Field</b></small>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="useruniversity" name="useruniversity"  [(ngModel)]="user.profession" required
+                                #useruniversity="ngModel"
+                                [class.is-invalid]="useruniversity.invalid && useruniversity.touched">
+                                <option disabled selected value="">University *</option>
+                                <option value="Harvard University">Harvard University</option>
+                                <option value="Stanford University">Stanford University</option>
+                                <option value="University of Oxford">University of Oxford</option>
+                                <option value="University of Cambridge">University of Cambridge</option>
+                                <option value="Massachusetts Institute of Technology">Massachusetts Institute of Technology</option>
+                                <option value="California Institute of Technology">California Institute of Technology</option>
+                                <option value="Imperial College London">Imperial College London</option>
+                                <option value="ETH Zurich - Swiss Federal Institute of Technology">ETH Zurich - Swiss Federal Institute of Technology</option>
+                                <option value="National University of Singapore">National University of Singapore</option>
+                                <option value="University of Tokyo">University of Tokyo</option>
+                                <option value="University of Toronto">University of Toronto</option>
+                                <option value="University of Melbourne">University of Melbourne</option>
+                                <option value="Other">Other</option>
+                                </select>
+                                <small class="text-dangerous" [class.d-none]="useruniversity.valid || useruniversity.untouched"><b>Required Field</b></small>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password *" name="pwd" [(ngModel)]="user.password" required 
+                                #userpassword="ngModel"
+                                [class.is-invalid]="userpassword.invalid && userpassword.touched">
+                                <div *ngIf="userpassword.errors && userpassword.invalid && userpassword.touched">
+                                  <small class="text-dangerous" *ngIf="userpassword.errors.required"><b>Required Field</b></small>
+                                </div>
+                                <small class="text-dangerous" *ngIf="wrongPassword(userpassword.value)">At least one uppercase, numeric digit, lowercase, special character, length of 6-20</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email address *" name="useremail" [(ngModel)]="user.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+                                #useremail="ngModel"
+                                [class.is-invalid]="useremail.invalid && useremail.touched">
+                                <div *ngIf="useremail.errors && (useremail.invalid && useremail.touched)">
+                                    <small class="text-dangerous" *ngIf="useremail.errors.required"><b>Required Field</b></small>
+                                    <small class="text-dangerous" *ngIf="useremail.errors.pattern"><b>Invalid email Id</b></small>
+                                  </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" maxlength="10" minlength="10" class="form-control" placeholder="Mobile *" id ="usermobile" name="usermobile" [(ngModel)]="user.mobile" required 
+                                #usermobile="ngModel"
+                                [class.is-invalid]="usermobile.invalid && usermobile.touched">
+                                <small class="text-dangerous" [class.d-none]="usermobile.valid || usermobile.untouched"><b>Required Field</b></small>
+                                <script>
+                                    const phoneInputField = document.querySelector("#usermobile");
+                                    const phoneInput = window.intlTelInput(phoneInputField, {
+                                      utilsScript:
+                                        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                                    });
+                                    function process(event) {
+                                        event.preventDefault();
+                                
+                                        const phoneNumber = phoneInput.getNumber();
+                                
+                                        info.style.display = "";
+                                        info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+                                        }
+                                  </script>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Address *" name="useraddress" [(ngModel)]="user.address" required 
+                                #useraddress="ngModel"
+                                [class.is-invalid]="useraddress.invalid && useraddress.touched">
+                                <small class="text-dangerous" [class.d-none]="useraddress.valid || useraddress.untouched"><b>Required Field</b></small>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="Updateform.form.invalid" type="submit" class="btnRegister">Update</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

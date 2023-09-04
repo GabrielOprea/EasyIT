@@ -1,0 +1,23 @@
+
+<div class="heading-text" style="margin-top: 10%; margin-bottom: 10%;"><b>User List</b></div>
+<div id="profilecard">
+<div class="row">
+    <div  *ngFor="let user of users | async"  style="height: 200px;" id="bloodCards">
+        <div class="column">
+            <a><img class="bloodimg" [src]="'assets/img/maleuser.png'" width="140" height="140"></a>    
+        </div>  
+        <div class="column"> 
+        <div class="card-block">
+            <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> {{user.username}} </b>  <small style="font-weight: bold;"> ({{user.userid}}) </small></div>
+            <br>
+            <div class="text"><b class="element"> Phone number: </b>  {{user.mobile}} </div>
+            <div class="text"><b class="element"> University: </b> {{user.profession}} </div>
+            <div class="text"><b class="element"> Email: </b> {{user.email}}</div>
+            <br>
+        </div>
+        </div>
+    </div>
+</div>
+  </div>
+
+<br><br><br>

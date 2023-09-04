@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+
+
+/* table, td{
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+}
+table, td, tr{
+  border: 1px solid rgb(163, 161, 161);
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  width: 60%;
+}
+
+th{
+  text-transform: uppercase;
+  color: white;
+  font-family: Helvetica;
+  font-style: italic;
+  font-size: normal;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid white;
+}
+td{
+  text-transform:none;
+  padding: 10px;
+} */
+.accepted{
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(30, 116, 30);
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-weight: bolder;
+}
+.pending{
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(196, 137, 28);
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-weight: bolder;
+}
+.rejected{
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: red;
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-weight: bolder;
+}
+.date-cover
+{
+  border-radius: 10px;
+  background-color: rgb(14, 9, 58);
+  padding: 5px 10px 5px 10px;
+  color: white;
+  width: auto;
+  font-size: 18px;
+  font-weight: bolder;
+}
+.headercolor
+{
+  background-color: rgb(93, 7, 93);
+  padding: 2px;
+}
+
+.container td {
+  font-weight: normal;
+  font-size: 1em;
+-webkit-box-shadow: 0 2px 2px -2px #0E1119;
+   -moz-box-shadow: 0 2px 2px -2px #0E1119;
+        box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.container {
+  text-align: center;
+  overflow: hidden;
+  width: 70%;
+  margin: 0 auto;
+display: table;
+ padding: 6px;
+ border-radius: 10px;
+ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.container td, .container th {
+  padding-bottom: 2%;
+  padding-top: 2%;
+}
+
+/* Background-color of the odd rows */
+.container tr:nth-child(odd) {
+  background-color: #e9dbe9;
+}
+
+/* Background-color of the even rows */
+.container tr:nth-child(even) {
+  background-color:  #d3c3d3;
+}
+
+.container th {
+  background-color: rgb(50, 4, 50);
+  color: white;
+  font-weight: bold;
+}
+
+
+@media (max-width: 800px) {
+.container td:nth-child(4),
+.container th:nth-child(4) { display: none; }
+}

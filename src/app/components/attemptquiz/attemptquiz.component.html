@@ -1,0 +1,62 @@
+
+<div class="container register" style="margin-top: 10%;">
+    <div class="row">
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h3  class="register-heading"><i class="fa fa-sticky-note-o"></i> New Quiz</h3>
+                    <small class="text-dangerous"><b>{{msg}}</b></small>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>
+                                    Quiz Name:   {{quiz.quizname}}
+                                </p>
+                            </div>
+                        </div>                           
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>
+                                    Passing Percent(%):  {{quiz.passingpercent}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-left: 10%;">
+                        <div *ngFor="let question of questions; index as i">
+                            <div class="row" style="margin-top: 5%;">
+                                <p> {{questions[i].question}}</p>
+                                <div>
+
+                            </div>
+                            <div class="row" style="margin-top: 1%;">
+
+                                <div class="col-md-6">
+                                    <input type="checkbox" id="vara" name="{{questions[i].question}}" (click)="uncheckOthers($event, questions[i].question, i, 'A')">
+                                    <label for="vara">
+                                        A) {{questions[i].vara}}
+                                    </label> <br>
+                                    <input type="checkbox" id="varb" name="{{questions[i].question}}" (click)="uncheckOthers($event, questions[i].question, i, 'B')">
+                                    <label for="varb">
+                                        B) {{questions[i].varb}}
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" id="varc" name="{{questions[i].question}}" (click)="uncheckOthers($event, questions[i].question, i, 'C')">
+                                    <label for="varc">
+                                        C) {{questions[i].varc}}
+                                    </label> <br>
+                                    <input type="checkbox" id="vard" name="{{questions[i].question}}" (click)="uncheckOthers($event, questions[i].question, i, 'D')">
+                                    <label for="vard">
+                                        D) {{questions[i].vard}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button (click)="submitAnswers()"> Submit </button>
+            </div>
+        </div>
+    </div>
+</div>		
