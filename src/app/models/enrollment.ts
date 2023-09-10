@@ -7,10 +7,7 @@ export class Enrollment
     enrolleduserid : string = '';
     enrolledusertype : string = '';
     instructorname : string = '';
-    instructorinstitution : string = '';
     enrolledcount : string = '';
-    youtubeurl : string = '';
-    websiteurl : string = '';
     coursetype : string = '';
     skilllevel : string = '';
     language : string = '';

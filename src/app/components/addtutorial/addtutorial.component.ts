@@ -10,12 +10,13 @@ import { HttpClient } from '@angular/common/http';
 import { Material } from 'src/app/models/material';
 import { UserService } from 'src/app/services/user.service';
 
+
 @Component({
-  selector: 'app-addchapter',
-  templateUrl: './addchapter.component.html',
-  styleUrls: ['./addchapter.component.css']
+  selector: 'app-addtutorial',
+  templateUrl: './addtutorial.component.html',
+  styleUrls: ['./addtutorial.component.css']
 })
-export class AddchapterComponent implements OnInit {
+export class AddtutorialComponent implements OnInit {
 
   chapter = new Chapter();
   todelete : Material[] = [];
@@ -141,7 +142,7 @@ export class AddchapterComponent implements OnInit {
   addMaterials()
   {
     for (let material of this.materials) {
-      material.materialtype = 'material'
+      material.materialtype = 'tutorial'
       material.coursename = this.selectedName;
     }
     this._service.addNewMaterials(this.materials).subscribe(
@@ -184,8 +185,8 @@ export class AddchapterComponent implements OnInit {
       if (file) {
 
           this.fileName = file.name;
-          if(!(this.fileName.endsWith(".pdf") || this.fileName.endsWith(".mp4"))) {
-            alert("Please upload .mp4 or .pdf !");
+          if(!this.fileName.endsWith(".mp4")) {
+            alert("Please upload .mp4 !");
 
             target.value = "";
             return;

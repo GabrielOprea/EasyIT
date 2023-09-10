@@ -9,7 +9,7 @@
                     <form #quizform="ngForm">
                     <div class="row register-form">
                         <div class="form-group">
-                            <label>Quiz Name : <b style="color:red;">*</b></label>
+                            <label>Quiz Name : <b style="color:rgb(93, 7, 93);">*</b></label>
                             <input type="text" class="form-control" placeholder="Enter quiz name" name="quizname" [(ngModel)]="quiz.quizname" required 
                             #quizname="ngModel"
                             [class.is-invalid]="quizname.invalid && quizname.touched">
@@ -19,11 +19,11 @@
                     <div style="padding-left: 10%;">
                         <div *ngFor="let question of questions; index as i">
                             <div class="row" style="margin-top: 5%;">
-                                <label>Question <b style="color:red;">*</b></label>  
-                                <input [(ngModel)] = "questions[i].question" [ngModelOptions]="{standalone: true}" class="form-control" style="width: 70%;" type = "text" placeholder="Enter the question" required>
+                                <label>Question <b style="color:rgb(93, 7, 93);">*</b></label>  
+                                <input [(ngModel)] = "questions[i].question" [ngModelOptions]="{standalone: true}" class="form-control" style="width: 88%;" type = "text" placeholder="Enter the question" required>
                                 <div>
                                 <label for="cars" style="display: inline;">Choose the correct variant:</label>
-                                <select [(ngModel)] = "questions[i].correctvar" [ngModelOptions]="{standalone: true}" style="width: 20px; height: 20px; display: inline; position: absolute; margin: 3px;">
+                                <select [(ngModel)] = "questions[i].correctvar" [ngModelOptions]="{standalone: true}" style="display: inline; position: absolute; margin: 3px;">
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>
@@ -35,17 +35,17 @@
 
                                 <div class="col-md-6">
 
-                                    <label>Variant A : <b style="color:red;">*</b></label>  <br>
-                                    <input [(ngModel)] = "questions[i].vara" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant A" required> <br>
-                                    <label>Variant B : <b style="color:red;">*</b></label>  <br>
-                                    <input [(ngModel)] = "questions[i].varb" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant B" required>
+                                    <label>Variant A : <b style="color:rgb(93, 7, 93);">*</b></label>  <br>
+                                    <input style="width: 78%;" [(ngModel)] = "questions[i].vara" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant A" required> <br>
+                                    <label>Variant B : <b style="color:rgb(93, 7, 93);">*</b></label>  <br>
+                                    <input style="width: 78%;" [(ngModel)] = "questions[i].varb" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant B" required>
                                 </div>
                                 <div class="col-md-6">
                                     
-                                    <label>Variant C : <b style="color:red;">*</b></label>  <br>
-                                    <input [(ngModel)] = "questions[i].varc" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant C" required> <br>
-                                    <label>Variant D : <b style="color:red;">*</b></label>  <br>
-                                    <input [(ngModel)] = "questions[i].vard" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant D" required>
+                                    <label>Variant C : <b style="color:rgb(93, 7, 93);">*</b></label>  <br>
+                                    <input style="width: 78%;" [(ngModel)] = "questions[i].varc" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant C" required> <br>
+                                    <label>Variant D : <b style="color:rgb(93, 7, 93);">*</b></label>  <br>
+                                    <input style="width: 78%;" [(ngModel)] = "questions[i].vard" [ngModelOptions]="{standalone: true}" type = "text" placeholder="Enter Variant D" required>
                                 </div>
                             </div>
                         </div>

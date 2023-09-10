@@ -4,26 +4,19 @@
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <h3  class="register-heading"><i class="fa fa-sticky-note-o"></i> New Quiz</h3>
+                    <h3  style="text-align: center;" class="register-heading"><i class="fa fa-sticky-note-o"></i> New Quiz</h3>
                     <small class="text-dangerous"><b>{{msg}}</b></small>
                     <div class="row register-form">
-                        <div class="col-md-6">
+                        <div style="text-align: center;">
                             <div class="form-group">
                                 <p>
                                     Quiz Name:   {{quiz.quizname}}
                                 </p>
                             </div>
                         </div>                           
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <p>
-                                    Passing Percent(%):  {{quiz.passingpercent}}
-                                </p>
-                            </div>
-                        </div>
                     </div>
                     <div style="padding-left: 10%;">
-                        <div *ngFor="let question of questions; index as i">
+                        <div *ngFor="let question of questions; index as i" class="questbox">
                             <div class="row" style="margin-top: 5%;">
                                 <p> {{questions[i].question}}</p>
                                 <div>
@@ -55,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <button (click)="submitAnswers()"> Submit </button>
+                <button (click)="submitAnswers()" class="fa fa-plus"> Submit </button>
             </div>
         </div>
     </div>

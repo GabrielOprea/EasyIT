@@ -8,6 +8,7 @@ import { Wishlist } from '../models/wishlist';
 import { Chapter } from '../models/chapter';
 import { Post } from '../models/post';
 import { Review } from '../models/review';
+import { Material } from '../models/material';
 
 const NAV_URL = environment.apiURL;
 
@@ -93,7 +94,10 @@ export class UserService {
   getChappterListByCourseName(coursename: string): Observable<Chapter[]> {
     return this._http.get<Chapter[]>(`${NAV_URL}/getchapterlistbycoursename/` + coursename);
   }
-
+  getMaterialListByCourseNameAndType(coursename: string, type: string): Observable<Material[]> {
+    return this._http.get<Material[]>(`${NAV_URL}/getmateriallistbycoursenameandtype/` + coursename + '/' + type);
+  }
+  
   getProfileDetails(loggedUser: string): Observable<any> {
     return this._http.get(`${NAV_URL}/userprofileDetails/` + loggedUser);
   }

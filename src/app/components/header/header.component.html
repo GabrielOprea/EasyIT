@@ -3,7 +3,7 @@
     <div class="header" id="header">
       <div class="nav">
         <div class="logo">
-          <button class='fa fa-bars display-sidebar' *ngIf="loggedUser !== ''" (click)="showMenu()"></button>
+          <button class='fa fa-bars display-sidebar' *ngIf="this.getLoggedUser() !== null" (click)="showMenu()"></button>
           <img src="https://elearningindustry.com/wp-content/uploads/2016/08/organization-ready-for-elearning.png" style="border-radius: 50%; background-color: white;" width="50" height="40">
           <h4 style="margin-left: 3%; margin-top: 1%; font-family: 'Aladin', cursive; color: rgb(248, 247, 247);">EasyIT</h4><br>
         </div>
@@ -11,11 +11,11 @@
         <button *ngIf="_router.url !== '/'" style="font-weight: bold;" class="log" id="log" [routerLink]="['']"><i class="fa fa-home"></i> Home</button>
         <button *ngIf="_router.url == '/'" style="font-weight: bold;" class="log-current" id="log-current" [routerLink]="['']"><i class="fa fa-home"></i> Home</button>
 
-        <button *ngIf="_router.url !== '/dashboard' && _router.url !== '/admindashboard' && loggedUser !== ''" style="font-weight: bold;" class="log" id="log" (click) = "navigateHome()"><i class="fa fa-th"></i> Dashboard</button>
-        <button *ngIf="(_router.url == '/dashboard' || _router.url == '/admindashboard') && loggedUser !== ''" style="font-weight: bold;" class="log-current" id="log-current" (click) = "navigateHome()"><i class="fa fa-th"></i> Dashboard</button>
+        <button *ngIf="_router.url !== '/dashboard' && _router.url !== '/admindashboard' && this.getLoggedUser() !== null" style="font-weight: bold;" class="log" id="log" (click) = "navigateHome()"><i class="fa fa-th"></i> Dashboard</button>
+        <button *ngIf="(_router.url == '/dashboard' || _router.url == '/admindashboard') && this.getLoggedUser() !== null" style="font-weight: bold;" class="log-current" id="log-current" (click) = "navigateHome()"><i class="fa fa-th"></i> Dashboard</button>
 
-        <button *ngIf= "loggedUser !== ''" style="font-weight: bold;" class="log" id="log" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button>
-        <div class="dropdown" *ngIf="!_router.url.startsWith('/login') && loggedUser === ''">
+        <button *ngIf= "this.getLoggedUser() !== null" style="font-weight: bold;" class="log" id="log" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button>
+        <div class="dropdown" *ngIf="!_router.url.startsWith('/login') && this.getLoggedUser() === null">
           <button  *ngIf="!_router.url.startsWith('/login')" style="font-weight: bold;" class="log" id="log"><i class="fa fa-sign-in"></i> Login</button>
 
           <div class="dropdown-content">
@@ -41,7 +41,7 @@
         </div>
         <button  *ngIf="_router.url.startsWith('/login')" style="font-weight: bold;" class="log-current" id="log-current"><i class="fa fa-sign-in"></i> Login</button>
 
-        <div class="dropdown"  *ngIf="!_router.url.startsWith('/registration')  && loggedUser === ''">
+        <div class="dropdown"  *ngIf="!_router.url.startsWith('/registration')  && this.getLoggedUser() === null">
           <button  *ngIf="!_router.url.startsWith('/registration')" style="font-weight: bold;" class="log" id="log"><i class="fa fa-user-plus"></i>  Sign Up</button>
           <div class="dropdown-content">
             <div class="detail" (click)="registration('professor')" style="background-color: rgb(146, 107, 146);">
@@ -92,50 +92,50 @@
       </li>
       
 
-      <li [routerLink]="['/approveprofessor']" *ngIf="_router.url.startsWith('/approveprofessor') && currRole === 'professor'" class="li-current">
+      <li [routerLink]="['/approveprofessor']" *ngIf="_router.url.startsWith('/approveprofessor') && ((currRole === 'admin') || (currRole === 'professor'))" class="li-current">
         <a>
           <i class='fa fa-check-square'></i>
           <span class="links_name">Approval Status</span>
         </a>
       </li>
-      <li [routerLink]="['/approveprofessor']" *ngIf="!_router.url.startsWith('/approveprofessor') && currRole === 'professor'">
+      <li [routerLink]="['/approveprofessor']" *ngIf="!_router.url.startsWith('/approveprofessor') && ((currRole === 'admin') || (currRole === 'professor'))">
         <a>
           <i class='fa fa-check-square'></i>
           <span class="links_name">Approval Status</span>
         </a>
       </li>
-      <li [routerLink]="['/addCourse']" *ngIf="_router.url.startsWith('/addCourse') && currRole === 'professor'" class="li-current">
+      <li [routerLink]="['/addCourse']" *ngIf="_router.url.startsWith('/addCourse') && ((currRole === 'admin') || (currRole === 'professor'))" class="li-current">
        <a>
          <i class='fa fa-cart-plus' ></i>
          <span class="links_name">Add Course</span>
        </a>
      </li>
-     <li [routerLink]="['/addCourse']" *ngIf="!_router.url.startsWith('/addCourse') && currRole === 'professor'">
+     <li [routerLink]="['/addCourse']" *ngIf="!_router.url.startsWith('/addCourse') && ((currRole === 'admin') || (currRole === 'professor'))">
      <a>
        <i class='fa fa-cart-plus' ></i>
        <span class="links_name">Add Course</span>
      </a>
    </li>
 
-     <li [routerLink]="['/mycourses']" *ngIf="_router.url.startsWith('/mycourses') && currRole === 'user'" class="li-current">
+     <li [routerLink]="['/mycourses']" *ngIf="_router.url.startsWith('/mycourses') && ((currRole === 'admin') || (currRole === 'user'))" class="li-current">
         <a>
           <i class='fa fa-graduation-cap' ></i>
           <span class="links_name">My Learning</span>
         </a>
       </li>
-      <li [routerLink]="['/mycourses']" *ngIf="!_router.url.startsWith('/mycourses') && currRole === 'user'">
+      <li [routerLink]="['/mycourses']" *ngIf="!_router.url.startsWith('/mycourses') && ((currRole === 'admin') || (currRole === 'user'))">
         <a>
           <i class='fa fa-graduation-cap' ></i>
           <span class="links_name">My Learning</span>
         </a>
       </li>
-      <li [routerLink]="['/mywishlist']" *ngIf="_router.url.startsWith('/mywishlist') && currRole === 'user'" class="li-current">
+      <li [routerLink]="['/mywishlist']" *ngIf="_router.url.startsWith('/mywishlist') && ((currRole === 'admin') || (currRole === 'user'))" class="li-current">
         <a>
           <i class='fa fa-heart' ></i>
           <span class="links_name">Favourites</span>
         </a>
       </li>
-      <li [routerLink]="['/mywishlist']" *ngIf="!_router.url.startsWith('/mywishlist') && currRole === 'user'">
+      <li [routerLink]="['/mywishlist']" *ngIf="!_router.url.startsWith('/mywishlist') && ((currRole === 'admin') || (currRole === 'user'))">
         <a>
           <i class='fa fa-heart' ></i>
           <span class="links_name">Favourites</span>

@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController
 {
+  @Autowired
+  private MaterialService materialService;
 	@Autowired
 	private UserService userService;
 
@@ -63,7 +65,7 @@ public class UserController
 
 	@PostMapping("/enrollnewcourse/{email}/{role}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public String enrollNewCourse(@RequestBody Enrollment enrollment, @PathVariable String email, @PathVariable String role) throws Exception
+	public ResponseEntity<Enrollment> enrollNewCourse(@RequestBody Enrollment enrollment, @PathVariable String email, @PathVariable String role) throws Exception
 	{
 		String enrolledUserName = "",enrolledUserID = "";
 
@@ -125,8 +127,8 @@ public class UserController
 			}
 		}
 
-		return "done";
-	}
+    return new ResponseEntity<Enrollment>(enrollment, HttpStatus.OK);
+  }
 
 	@GetMapping("/getenrollmentstatus/{coursename}/{email}/{role}")
 	@CrossOrigin(origins = "http://localhost:4200")
@@ -308,6 +310,16 @@ public class UserController
 		}
 		return new ResponseEntity<List<Chapter>>(chapterLists, HttpStatus.OK);
 	}
+
+  @GetMapping("/getmateriallistbycoursenameandtype/{coursename}/{type}")
+  @CrossOrigin(origins = "http://localhost:4200")
+  public ResponseEntity<List<Material>> getChapterListByCoursename(@PathVariable String coursename, @PathVariable String type) throws Exception
+  {
+    List<Material> materialList = materialService.fetchMaterialbyCoursenameAndMaterialtype(coursename, type);
+
+    return new ResponseEntity<List<Material>>(materialList, HttpStatus.OK);
+  }
+
   public String getNewID()
   {
     String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"0123456789"+"abcdefghijklmnopqrstuvxyz";

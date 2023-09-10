@@ -4,6 +4,7 @@ import { Professor } from '../../models/professor';
 import { User } from '../../models/user';
 import { ProfessorService } from '../../services/professor.service';
 import { RegistrationService } from '../../services/registration.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   professor = new Professor();
   msg = ' ';
   paramName: string | null = "";
-  constructor(private _registrationService : RegistrationService, private _professorService : ProfessorService, private _router : Router, private route: ActivatedRoute) { }
+  constructor(private _service: LoginService, private _registrationService : RegistrationService, private _professorService : ProfessorService, private _router : Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void 
   {
@@ -65,6 +66,11 @@ export class RegistrationComponent implements OnInit {
       data => {
         console.log("Registration Success");
         sessionStorage.setItem("username",this.user.username);
+        sessionStorage.setItem('loggedUser', this.user.email);
+        sessionStorage.setItem('USER', "user");
+        sessionStorage.setItem('ROLE', "user");
+        sessionStorage.setItem('name', data.username);
+        this._router.navigate(['/dashboard']);
         this._router.navigate(['/registrationsuccess', 'user']);
       },
       error => {
@@ -81,7 +87,24 @@ export class RegistrationComponent implements OnInit {
       data => {
         console.log("Registration Success");
         sessionStorage.setItem("doctorname",this.professor.professorname);
-        this._router.navigate(['/registrationsuccess', 'professor']);
+
+        this._service.loginProfessorFromRemote(this.professor).subscribe(
+          (data: any) => {
+            console.log(data);
+            console.log("Response Received");
+            sessionStorage.clear();
+            sessionStorage.setItem('loggedUser', this.professor.email);
+            sessionStorage.setItem('USER', "professor");
+            sessionStorage.setItem('ROLE', "professor");
+            sessionStorage.setItem('professorname',this.professor.email);
+            sessionStorage.setItem('name', data.professorname);
+            this._router.navigate(['/registrationsuccess', 'professor']);
+          },
+          (error: { error: any; }) => {
+            console.log(error.error);
+            this.msg="Bad credentials!";
+          }
+        )
       },
       error => {
         console.log("Registration Failed");

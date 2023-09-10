@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from 'src/app/models/post';
 import { Announcement } from 'src/app/models/announcement';
 import { ProfessorService } from 'src/app/services/professor.service';
+import { Material } from 'src/app/models/material';
 
 declare var require: any;
 const FileSaver = require('file-saver');
@@ -20,6 +21,8 @@ const FileSaver = require('file-saver');
 })
 export class FullcourseComponent implements OnInit {
 
+  materiallist :Material[] | undefined;
+  tutoriallist :Material[] | undefined;
 
   chapterlist :Chapter[] | undefined
   courselist : Observable<Course[]> | undefined;
@@ -65,16 +68,27 @@ export class FullcourseComponent implements OnInit {
       }
     )
 
+    this._service.getMaterialListByCourseNameAndType(this.courseName, "material").subscribe(
+      data => {
+        this.materiallist = data;
+        console.log("chapter added Successfully !!!");
+      },
+      error => {
+        console.log("chapter adding Failed !!!");
+        console.log(error.error);
+      });
 
-    this._service.getChappterListByCourseName(this.courseName).subscribe(
-    data => {
-      this.chapterlist = data;
-      console.log("chapter added Successfully !!!");
-    },
-    error => {
-      console.log("chapter adding Failed !!!");
-      console.log(error.error);
-    });
+
+      this._service.getMaterialListByCourseNameAndType(this.courseName, "tutorial").subscribe(
+        data => {
+          this.tutoriallist = data;
+          console.log("chapter added Successfully !!!");
+        },
+        error => {
+          console.log("chapter adding Failed !!!");
+          console.log(error.error);
+        });
+  
 
     this.courselist = this._service.getCourseListByName(this.courseName);
 

@@ -66,7 +66,7 @@
         <a style="margin-right: 8%; margin-left: 7%;"
           class="btn btn-secondary">Enrolled</a>
       </div>
-    </div>
+    </div>i
     <div style="margin-top: 0%; margin-left: 10%;">
       <a (click)="visitCourse(data.coursename)" style="margin-right: 2%; border: none;" class="btn btn-primary">Visit
         Course</a>
@@ -148,19 +148,19 @@
     </div>
   </div>
 </div>
-
+ f
 <br> -->
 <div class="modal fade" #alertOne id="alertOne" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Course Not Enrolled ⚠️</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Course Not Enrolled</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <img [src]="'assets/img/alert.gif'" style="margin-left: 35%;" width="150" height="150"><br>
-        <b style="font-weight: bold; color: red; align-content: center;">You have not yet Enrolled to this course,
-          Please Enroll to this course to proceed futher !!!</b>
+        <b style="font-weight: bold; color: #6c1466; align-content: center;">You have not yet enrolled to this course,
+          please enroll to this course to proceed further.</b>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" style="cursor: pointer;" data-bs-dismiss="modal">Dismiss</button>
@@ -168,6 +168,44 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" #alertOne id="alertTwo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enrollment Successful</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="'assets/img/success.gif'" style="margin-left: 35%;" width="150" height="150"><br>
+        <b style="font-weight: bold; color: #6c1466; align-content: center;">You have succesfully enrolled to the course. Go to 'Visit Course' to access your course material.</b>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" style="cursor: pointer;" data-bs-dismiss="modal">Dismiss</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" #alertOne id="alertThree" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Course Already Enrolled</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="'assets/img/alert.gif'" style="margin-left: 35%;" width="150" height="150"><br>
+        <b style="font-weight: bold; color: #6c1466; align-content: center;">You are already enrolled to the course.  Go to 'Visit Course' to access your course material.</b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" style="cursor: pointer;" data-bs-dismiss="modal">Dismiss</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="heading-text" style="margin-top: 10%; margin-bottom: 10%;"><b>Course List</b></div>
 
 <button class="container course-type" style="border: none;" (click)="showMenu('basic_i')">
@@ -176,7 +214,7 @@
   <i class="fa fa-caret-up" id="basic_i" *ngIf="basic_shown"></i>
 </button>
 <div class="container course-contents" *ngIf="basic_shown">
-      <div  *ngFor="let basic of basicCourses | async"  style="height: 200px;" id="bloodCards">
+      <div  *ngFor="let basic of basicCourses | async"  style="height: 250px;" id="bloodCards">
         <div class="row">
         <div class="column">
           <div class="card-block">
@@ -191,7 +229,7 @@
           <div style="padding: 5px;" *ngIf="currRole == 'user'">
           <button class="fa fa-heart" style="border: none; background-color: transparent; font-size: 20px; color: #6c1466;"> Add to wishlist</button>
           </div>
-          <div style="padding: 5px;" *ngIf="currRole == 'user'">
+          <div style="padding: 5px;">
             <button (click)="enrollcourse(basic,loggedUser,currRole)"  class="fa fa-check-circle" style="border: none; background-color: transparent; font-size: 20px; color: #6c1466;"> Enroll</button>
             </div>
           <div style="padding: 5px;">
@@ -225,7 +263,7 @@
       <div style="padding: 5px;" *ngIf="currRole == 'user'">
       <button class="fa fa-heart" style="border: none; background-color: transparent; font-size: 20px; color: #6c1466;"> Add to wishlist</button>
       </div>
-      <div style="padding: 5px;" *ngIf="currRole == 'user'">
+      <div style="padding: 5px;">
         <button (click)="enrollcourse(basic,loggedUser,currRole)" class="fa fa-check-circle" style="border: none; background-color: transparent; font-size: 20px; color: #6c1466;"> Enroll</button>
         </div>
       <div style="padding: 5px;">
@@ -259,7 +297,7 @@
       <div style="padding: 5px;" *ngIf="currRole == 'user'">
       <button class="fa fa-heart" style="border: none; background-color: transparent; font-size: 20px; color: #6c1466;"> Add to wishlist</button>
       </div>
-      <div style="padding: 5px;" *ngIf="currRole == 'user'">
+      <div style="padding: 5px;">
         <button (click)="enrollcourse(basic,loggedUser,currRole)" class="fa fa-check-circle" style="border: none; background-color: transparent; font-size: 20px; color: #6c1466;"> Enroll</button>
         </div>
       <div style="padding: 5px;">
@@ -272,3 +310,11 @@
   </div>
   </div>
 </div>
+
+<button (click) = "navtoMaterials()" *ngIf="currRole !== 'user'" class="container course-type" style="border: none; background-color: rgb(207 99 155);">
+  <div class="text-title"><b class="element" style="font-family: cursive; font-size: 22px; color: white;"> Edit Materials </b></div>
+</button>
+
+<button (click) = "navtoTutorials()" *ngIf="currRole !== 'user'" class="container course-type" style="border: none; background-color: rgb(207 99 155);">
+  <div class="text-title"><b class="element" style="font-family: cursive; font-size: 22px; color: white;"> Edit Tutorials </b></div>
+</button>

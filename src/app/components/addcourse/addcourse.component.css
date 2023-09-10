@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Aladin&family=Merienda+One&family=Staatliches&display=swap');
 
 .register{
-    background: white;
     margin-top: 0.8%;
     margin-bottom: 3%;
     border-radius: 15px;
@@ -13,6 +12,8 @@
     box-shadow: 5px 5px 35px 8px rgb(147, 158, 147); 
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
+    height:770px;
 }
 .register .register-form{
     padding: 10%;

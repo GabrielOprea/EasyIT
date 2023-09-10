@@ -16,7 +16,9 @@ export class RegistrationsuccessComponent implements OnInit {
         this.route.paramMap.subscribe(params => {
           setTimeout(() => {
             console.log("name " + params.get('paramName'));
-            this.router.navigate(['login', params.get('paramName')]);
+            this.router.navigate(['/dashboard']);
+
+            //this.router.navigate(['login', params.get('paramName')]);
         }, 7000);
         });
   }

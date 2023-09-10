@@ -9,16 +9,13 @@
         <div class="card-block">
             <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> {{professor.professorname}} </b>  <small style="font-weight: bold;"> ({{professor.professorid}}) </small></div>
             <br>
-            <div class="text"><b class="element"> University: </b>  {{professor.institutionname}} </div>
-            <div class="text"><b class="element"> Department: </b>  {{professor.department}} </div>
             <div class="text"><b class="element"> Years of experience: </b>  {{professor.experience}} </div>
-            <div class="text"><b class="element"> Academic Rank: </b>  {{professor.degreecompleted}} </div>
             <div class="text"><b class="element"> Phone number: </b>  {{professor.mobile}} </div>
             <div class="text"><b class="element"> Email: </b> {{professor.email}}</div>
             <br>
         </div>
 
-        <div class="status">
+        <div class="status" *ngIf="currRole != 'user' ">
             <div *ngIf="professor.status === 'accept'" class="status-btn">Approved Instructor</div>
             <div *ngIf="professor.status === 'reject'" class="status-btn2">Rejected</div>
             <div *ngIf="professor.status === 'false'" class="status-btn1">Approval Pending</div>

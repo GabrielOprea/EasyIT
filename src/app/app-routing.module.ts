@@ -26,6 +26,7 @@ import { ProfessorGuard } from './guards/professor.guard';
 import { RouterGuard } from './guards/router.guard';
 import { UserGuard } from './guards/user.guard';
 import { AttemptquizComponent } from './components/attemptquiz/attemptquiz.component';
+import { AddtutorialComponent } from './components/addtutorial/addtutorial.component';
 
 const routes: Routes = [
   { path: '', component: WelcomepageComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'userlist', component: UserlistComponent, canActivate: [RouterGuard] },
   { path: 'courselist', component: CourselistComponent, canActivate: [RouterGuard] },
   { path: 'addchapter', component: AddchapterComponent, canActivate: [RouterGuard] },
+  { path: 'addtutorial', component: AddtutorialComponent, canActivate: [RouterGuard] },
   { path: 'fullcourse/:coursename', component: FullcourseComponent, canActivate: [RouterGuard] },
   { path: 'editprofessorprofile', component: ProfessorprofileComponent, canActivate: [ProfessorGuard] },
   { path: 'edituserprofile', component: UserprofileComponent, canActivate: [UserGuard] },

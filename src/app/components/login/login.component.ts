@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
     
     if(this.paramName == "admin") {
       $(".user-login-form").hide();
+      console.log('admin@gmail.com')
+      console.log('admin123')
       $(".admin-login-form").show();
       $(".professor-login-form").hide();
       $("#userbtn").css("border", "0").css("border-bottom", "1.5px solid rgb(6, 50, 53)").css("opacity", "0.3");
@@ -102,6 +104,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('USER', "user");
           sessionStorage.setItem('ROLE', "user");
           sessionStorage.setItem('name', data.username);
+          sessionStorage.setItem('LOGGEDIN', 'TRUE');
+
           this._router.navigate(['/dashboard']);
         },
         (error: { error: any; }) => {
@@ -123,6 +127,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('ROLE', "professor");
           sessionStorage.setItem('professorname',this.professor.email);
           sessionStorage.setItem('name', data.professorname);
+          sessionStorage.setItem('LOGGEDIN', 'TRUE');
+            
           this._router.navigate(['/dashboard']);
         },
         (error: { error: any; }) => {

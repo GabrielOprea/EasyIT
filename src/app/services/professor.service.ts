@@ -7,6 +7,7 @@ import { Course } from '../models/course';
 import { Quiz } from '../models/quiz';
 import { Question } from '../models/question';
 import { Announcement } from '../models/announcement';
+import { Material } from '../models/material';
 
 const NAV_URL = environment.apiURL;
 
@@ -75,6 +76,15 @@ export class ProfessorService
   addNewChapters(chapter : Chapter) : Observable<any>
   {
     return this._http.post<any>(`${NAV_URL}/addnewchapter`,chapter);
+  }
+  
+  addNewMaterials(materials : Material[]) : Observable<any>
+  {
+    return this._http.post<any>(`${NAV_URL}/addnewmaterials`,materials);
+  }
+  deleteMaterials(materials : Material[]) : Observable<any>
+  {
+    return this._http.post<any>(`${NAV_URL}/deletematerials`,materials);
   }
 
   getProfileDetails(loggedUser : string) : Observable<any>

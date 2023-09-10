@@ -13,13 +13,10 @@
       <table  class="container">
         <thead>
           <tr>
-            <th>Idendity</th>
+            <th>Identity</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Degree</th>
             <th>Experience</th>
-            <th>Instituion</th>
-            <th>Department</th>
             <th>mobile</th>
             <th>Status</th>
           </tr>
@@ -29,10 +26,7 @@
             <td>{{professor.professorid}}</td>
             <td>{{professor.professorname}}</td>
             <td>{{professor.email}}</td>
-            <td>{{professor.degreecompleted}}</td>
             <td>{{professor.experience}} years</td>
-            <td>{{professor.institutionname}} </td>
-            <td>{{professor.department}}</td>
             <td>{{professor.mobile}}</td>
             <td>
                 <div *ngIf="currRole === 'professor' || currRole === 'PROFESSOR' && professor.email === loggedUser">
@@ -52,39 +46,30 @@
 
 
 <div class="panel panel-primary" id="adminapproval">
-    <div class="panel-heading">
-      <h2 *ngIf="currRole === 'admin' || currRole === 'ADMIN'" style="text-align: center; font-family: 'Oswald', sans-serif;color: darkgreen; margin-top: 3%; margin-bottom: 3%;"> Approve Instructor Here 
-      </h2>
-    </div>
+
+    <div class="heading-text" *ngIf="currRole === 'admin' || currRole === 'ADMIN'" style="margin-top: 10%; margin-bottom: 10%;"><b>Approve Instructor Here </b></div>
+
     <div class="panel-body">
-      <table cass="table table-bordered">
+      <table class="container">
         <thead>
           <tr>
-            <th>Idendity</th>
+            <th>Identity</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Degree</th>
             <th>Experience</th>
-            <th>Instituion</th>
-            <th>Department</th>
             <th>mobile</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let professor of professorlist | async">
-            <td><img *ngIf="professor.gender === 'Male' || professor.gender === 'male'" class="bloodimg" [src]="'assets/img/maleprofessor.png'" width="80" height="80">
-              <img *ngIf="professor.gender === 'Female' || professor.gender === 'female'" class="bloodimg" [src]="'assets/img/femaleprofessor.png'" width="80" height="80">
-            </td>
+            <td>{{professor.professorid}}</td>
             <td>{{professor.professorname}}</td>
             <td>{{professor.email}}</td>
-            <td>{{professor.degreecompleted}}</td>
             <td>{{professor.experience}} years</td>
-            <td>{{professor.institutionname}} </td>
-            <td>{{professor.department}}</td>
             <td>{{professor.mobile}}</td>
             <td>
-                <div *ngIf="loggedUser === 'admin@gmail.com' && professor.status === 'false'" >
+                <div *ngIf="loggedUser === 'admin@gmail.com' && professor.status === 'false'">
                   <button (click)="acceptRequest(professor.email)" id="acceptbtn" value="professor.email" value="Accept" style="margin-bottom: 5px;" class="accepted">Accept</button><br>
                   <button (click)="rejectRequest(professor.email)" id="rejectbtn" value="professor.email" value="Reject" class="rejected">Reject</button>
                   <div id="acceptedbtn" class="accepted" style="display: none;">Accepted</div>

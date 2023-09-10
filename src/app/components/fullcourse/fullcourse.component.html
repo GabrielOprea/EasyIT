@@ -1,89 +1,29 @@
-<div class="heading-text" style="margin-top: 10%; margin-bottom: 5%;"><b>Welcome to {{courseName}} course 👋 </b></div>
+<div class="heading-text" style="margin-top: 10%; margin-bottom: 5%;"><b>Welcome to {{courseName}} course </b></div>
 <div class="row">
     <div class="column" style="margin-bottom: 5%;">
 
      <div class="card-text" *ngFor="let course of courselist | async">
-        <p style="font-size: 30px; font-weight: bold; color: #6c1466;">
+        <p style="font-size: 40px; font-weight: bold; color: #6c1466;">
             Description:
         </p>
-        <hr style="width: 20%; height: 2px;">
-        <p>{{course.description}}
+        <hr style="font-size: 30px; width: 20%; height: 2px;">
+        <p style="font-size: 25px;">{{course.description}}
         </p>
         <br>
         <p style="font-size: 30px; font-weight: bold; color: #6c1466;">
             Overview:
         </p>
         <hr style="width: 20%; height: 2px;">
-        <p style="font-size: 16px;"><b>Level: </b> {{course.skilllevel}}</p>
-        <p style="font-size: 16px;"><b>Language :</b> {{course.language}}</p>
-        <p style="font-size: 16px;"><b>Course Type : </b>{{course.coursetype}} contents</p>
-        <p style="font-size: 16px;"><b> Instructor : </b>{{course.instructorname}} - {{course.instructorinstitution}}</p>
-        <p style="font-size: 16px;"><b> Enrolled Date : </b>{{course.enrolleddate}}</p>
-        <p style="font-size: 16px;"> <b>Learners : </b>{{course.enrolledcount}} learners enrolled previously</p>
+        <p style="font-size: 25px;"><b>Level: </b> {{course.skilllevel}}</p>
+        <p style="font-size: 25px;"><b>Language :</b> {{course.language}}</p>
+        <p style="font-size: 25px;"><b>Course Type : </b>{{course.coursetype}} contents</p>
+        <p style="font-size: 25px;"><b> Instructor : </b>{{course.instructorname}} - {{course.instructorinstitution}}</p>
+        <p style="font-size: 25px;"><b> Enrolled Date : </b>{{course.enrolleddate}}</p>
+        <p style="font-size: 25px;"> <b>Learners : </b>{{course.enrolledcount}} learners enrolled previously</p>
         </div>
     <div class="row">
         <div class="col-md-8">
-            
-    <div class="chapter-list" *ngFor="let chapter of chapterlist">
-        <div style="font-weight: bold; font-size: large; align-items: center; color: darkred;"><i class="fa fa-list"></i> Course Contents</div>
-        <div style="color: gray; font-weight: 400; font-size: small; margin-bottom: 5%;">(click on chapter name to get into the videos)</div>
-
-        <div style="cursor: pointer;" (click)="set1()" class="chapter1" *ngIf="chapter.chapter1name !== ''">
-            <div class="box1" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter1id)"> 1) {{chapter.chapter1name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter1name !== ''">
-
-        <div style="cursor: pointer;" (click)="set2()" class="chapter2" *ngIf="chapter.chapter2name !== ''">
-            <div class="box2" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter2id)"> 2) {{chapter.chapter2name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter2name !== ''">
-
-        <div style="cursor: pointer;" (click)="set3()" class="chapter3" *ngIf="chapter.chapter3name !== ''">
-            <div class="box3" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter3id)"> 3) {{chapter.chapter3name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter3name !== ''">
-
-        <div style="cursor: pointer;" (click)="set4()" class="chapter4" *ngIf="chapter.chapter4name !== ''">
-            <div class="box4" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter4id)"> 4) {{chapter.chapter4name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter4name !== ''">
-
-        <div style="cursor: pointer;" (click)="set5()" class="chapter5" *ngIf="chapter.chapter5name !== ''">
-            <div class="box5" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter5id)"> 5) {{chapter.chapter5name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter5name !== ''">
-
-        <div style="cursor: pointer;" (click)="set6()" class="chapter6" *ngIf="chapter.chapter6name !== ''">
-            <div class="box6" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter6id)"> 6) {{chapter.chapter6name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter6name !== ''">
-
-        <div style="cursor: pointer;" (click)="set7()" class="chapter7" *ngIf="chapter.chapter7name !== ''">
-            <div class="box7" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter7id)"> 7) {{chapter.chapter7name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter7name !== ''">
-
-        <div style="cursor: pointer;" (click)="set8()" class="chapter8" *ngIf="chapter.chapter8name !== ''">
-            <div class="box8" id="select-box"><i class="fa fa-check"></i></div>
-            <div class="name" (click)="openChapter(chapter.chapter8id)"> 8) {{chapter.chapter8name}}</div>
-            <div style="color: gray; font-weight: 600; font-size: small; margin-left: 12%;">subcontents (1/1)</div>
-        </div>
-        <hr *ngIf="chapter.chapter8name !== ''">
-    </div>
+    
 
     </div>
 
@@ -92,65 +32,37 @@
 
 <div class="column">
     <button class="container course-type" style="border: none;" (click)="openDownloads()">
-        <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> Content</b></div>
+        <div class="text"><b class="element" style="font-family: cursive; font-size: 28px;"> Content</b></div>
         <i class="fa fa-caret-down" id="advanced_i" *ngIf="!showDownloads"></i>
         <i class="fa fa-caret-up" id="advanced_i" *ngIf="showDownloads"></i>
     </button>
     <div id="downloads" style="padding-bottom: 5%;" class="descriptions"> 
-        <ul *ngFor="let chapter of chapterlist" >
-            <li style="padding: 10px;"  class="fa fa-file-text-o" > <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter1name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter1id)">Download</button> </li>
+        <ul *ngFor="let material of materiallist" >
+            <li style="padding: 10px;"  class="fa fa-file-text-o" > <div style="font-size: 28px; display: inline-block; padding: 10px;">{{material.materialname}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
+                height: 30px;"(click)="downloadPdf(material.materialfile)">Download</button> </li>
                 <br>
-            <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter2name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter2name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter2id)">Download</button> </li> 
-            <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter3name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter3name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                    height: 30px;"(click)="downloadPdf(chapter.chapter3id)">Download</button> </li>
-            <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter4name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter4name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                    height: 30px;"(click)="downloadPdf(chapter.chapter4id)">Download</button> </li> 
-            <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter5name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter5name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                    height: 30px;"(click)="downloadPdf(chapter.chapter5id)">Download</button> </li> 
-            <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter6name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter6name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                    height: 30px;"(click)="downloadPdf(chapter.chapter6id)">Download</button> </li> 
-            <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter7name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter7name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter7id)">Download</button> </li> 
-            <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter8name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter8name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                    height: 30px;"(click)="downloadPdf(chapter.chapter8id)">Download</button> </li> 
         </ul>
     </div>
 <button class="container course-type" style="border: none;"  (click)="openTutorials()">
-    <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> Tutorials</b></div>
+    <div class="text"><b class="element" style="font-family: cursive; font-size: 28px;"> Tutorials</b></div>
     <i class="fa fa-caret-down" id="advanced_i" *ngIf="!showTutorials"></i>
     <i class="fa fa-caret-up" id="advanced_i" *ngIf="showTutorials"></i>
 </button>
 <div id="tutorials" style="padding-bottom: 5%;" class="descriptions"> 
-    <ul *ngFor="let chapter of chapterlist" >
-        <li style="padding: 10px;"  class="fa fa-file-text-o" > <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter1name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-            height: 30px;"(click)="downloadPdf(chapter.chapter1id)">Download</button> </li>
+    <ul *ngFor="let material of tutoriallist" >
+        <li style="padding: 10px;"  class="fa fa-file-text-o" > <div style="font-size: 28px; display: inline-block; padding: 10px;">{{material.materialname}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
+            height: 30px;"(click)="downloadPdf(material.materialfile)">Download</button> </li>
             <br>
-        <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter2name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter2name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-            height: 30px;"(click)="downloadPdf(chapter.chapter2id)">Download</button> </li> 
-        <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter3name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter3name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter3id)">Download</button> </li>
-        <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter4name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter4name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter4id)">Download</button> </li> 
-        <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter5name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter5name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter5id)">Download</button> </li> 
-        <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter6name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter6name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter6id)">Download</button> </li> 
-        <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter7name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter7name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-            height: 30px;"(click)="downloadPdf(chapter.chapter7id)">Download</button> </li> 
-        <li style="padding: 10px;"  class="fa fa-file-text-o" *ngIf="chapter.chapter8name !== ''"> <div style="font-size: 20px; display: inline-block; padding: 10px;">{{chapter.chapter8name}} </div>   <button type="button" class="btn btn-success btn-sm" style="display: inline-block; border-radius: 10px; font-weight: bolder; font-size: 10px; max-width: 150px;
-                height: 30px;"(click)="downloadPdf(chapter.chapter8id)">Download</button> </li> 
     </ul>
 </div>
 <button class="container course-type" style="border: none;"  (click)="openQandA()">
-    <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> Forum</b></div>
+    <div class="text"><b class="element" style="font-family: cursive; font-size: 28px;"> Forum</b></div>
     <i class="fa fa-caret-down" id="advanced_i" *ngIf="!showQA"></i>
     <i class="fa fa-caret-up" id="advanced_i" *ngIf="showQA"></i>
 </button>
 <div id="qa" style="padding-bottom: 5%;" class="descriptions">
     <div class="post-list" *ngFor="let post of postlist">
-        <div style="border:3px solid #E5D5E9; background-color: white;">
+        <div style="border:3px solid white; background-color: #e5d5e9;">
         <p><b>{{post.poster}}</b> at <b>{{post.timestamp}}</b>
         </p>
         <p>
@@ -181,7 +93,7 @@
 </div>
 </div>
 <button class="container course-type" style="border: none;" (click)="openAnnouncements()">
-    <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> Announcements</b></div>
+    <div class="text"><b class="element" style="font-family: cursive; font-size: 28px;"> Announcements</b></div>
     <i class="fa fa-caret-down" id="advanced_i" *ngIf="!showAnnouncements"></i>
     <i class="fa fa-caret-up" id="advanced_i" *ngIf="showAnnouncements"></i>
 </button>

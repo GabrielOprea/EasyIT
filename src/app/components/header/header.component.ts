@@ -15,6 +15,10 @@ export class HeaderComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, public _router : Router) { }
 
+  getLoggedUser(): string | null {
+    return sessionStorage.getItem('loggedUser');
+  }
+
   ngOnInit(): void 
   {
     this.loggedUser = JSON.stringify(sessionStorage.getItem('loggedUser')|| '{}');
@@ -58,6 +62,15 @@ export class HeaderComponent implements OnInit {
     else if(this.currRole === "user"){
       this._router.navigate(['/dashboard']);
     }
+  }
+
+  getPath(): string {
+    console.log(sessionStorage.getItem('LOGGEDIN') );
+    if (sessionStorage.getItem('LOGGEDIN') == 'TRUE') {
+      console.log("AQI");
+      return '/dashboard'
+    }
+    return this._router.url;
   }
 
   login(paramName: string)

@@ -2,7 +2,8 @@
 <div class="heading-text" style="margin-top: 10%; margin-bottom: 10%;"><b>User List</b></div>
 <div id="profilecard">
 <div class="row">
-    <div  *ngFor="let user of users | async"  style="height: 200px;" id="bloodCards">
+    <div  *ngFor="let user of users | async"  style="height: 300px;" id="bloodCards">
+        
         <div class="column">
             <a><img class="bloodimg" [src]="'assets/img/maleuser.png'" width="140" height="140"></a>    
         </div>  
@@ -15,6 +16,10 @@
             <div class="text"><b class="element"> Email: </b> {{user.email}}</div>
             <br>
         </div>
+        </div>
+        <input type="text">
+        <div style="font-weight: 200;">
+            Give feedback
         </div>
     </div>
 </div>

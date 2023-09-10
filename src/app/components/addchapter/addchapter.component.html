@@ -1,11 +1,11 @@
 
 <div class="container" style="margin-top: 10%;">
-  <h2 class="textual"><i class="fa fa-book"></i> New Chapters </h2>
-  <form #addChapterform="ngForm" (ngSubmit)="addChapters()">
+  <h2 class="textual"><i class="fa fa-book"></i> New Materials </h2>
+  <form #addChapterform="ngForm" (ngSubmit)="addMaterials()">
       
       <div class="form-group">
           <label for="coursename">Course Name: <b class="text-dangerous">*</b></label>
-          <select class="form-control" id="sel1" name="coursename" [(ngModel)]="chapter.coursename" required
+          <select (change)="updateMaterials()" class="form-control" id="sel1" name="coursename" [(ngModel)]="selectedName" required
             #coursename="ngModel">
               <option style="color: lightgray;" selected="true" value="default">select course name</option>
               <option *ngFor="let course of coursenames | async">{{course}}</option>
@@ -17,107 +17,25 @@
       </div>
       <small style="color: gray; font-weight: bold;">Please choose course name from the drop-down</small>
 
-      <div id="chapter1">
-      <div class="form-group">
-          <label for="chapter1name">Material Name: <b class="text-dangerous">*</b></label>
-          <input type="text" class="form-control" placeholder="Enter material name" id="chapter1nametxt" name="chapter1name" [(ngModel)]="chapter.chapter1name">
-      </div>
-
-      <input type="file" class="file-input"
-      (change)="onFileSelected1($event)" #fileUpload>
-
-
-      <div id="chapter1btn" style="width: 12%; cursor: pointer; margin-top: 8px; background-color: rgb(15, 28, 130); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-    </div>
-
-      <div id="chapter2">
-      <div class="form-group">
-        <label for="chapter2name">Material Name: <b class="text-dangerous">*</b></label>
-        <input type="text" class="form-control" placeholder="Enter material name" id="chapter2nametxt" name="chapter2name" [(ngModel)]="chapter.chapter2name">
-      </div>
-
-      <input type="file" class="file-input"
-      (change)="onFileSelected2($event)" #fileUpload>
-
-      <div id="chapter2btn" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130);color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-      <div id="remove2btn" style="width: 15%; margin-top: -4.5%; margin-left: 14%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</div>  
-    </div>
-
-      <div id="chapter3">
+      <div class="row" [id]="'material' + i" *ngFor="let material of this.materials; let i = index">
         <div class="form-group">
-          <label for="chapter3name">Material Name: <b class="text-dangerous">*</b></label>
-          <input type="text" class="form-control" placeholder="Enter material name" id="chapter3nametxt" name="chapter3name" [(ngModel)]="chapter.chapter3name">
+          <label [for]="'material' + i + 'name'">Material Name: <b class="text-dangerous">*</b></label>
+          <input type="text" class="form-control" placeholder="Enter material name" [name]="'material' + i + 'name'" [(ngModel)]="materials[i].materialname">
         </div>
 
+        <div class="col-md-4">
         <input type="file" class="file-input"
-        (change)="onFileSelected3($event)" #fileUpload>
+        (change)="onFileSelectedNew($event, i)" #fileUpload>
+      </div>
+      <div class="col-md-4">  </div>
+      <div class="col-md-4">
 
-        <div id="chapter3btn" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-        <div id="remove3btn" style="width: 15%; margin-top: -4.5%; margin-left: 14%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</div>  
+        <button type="button" (click)="removeMaterial(i)"  style="width: 55%; margin-top: 3.5%; margin-left: 44%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</button>
       </div>
 
-      <div id="chapter4">
-        <div class="form-group">
-          <label for="chapter4name">Material Name: <b class="text-dangerous">*</b></label>
-          <input type="text" class="form-control" placeholder="Enter material name" id="chapter4nametxt" name="chapter4name" [(ngModel)]="chapter.chapter4name">
-        </div>
-
-        <input type="file" class="file-input"
-        (change)="onFileSelected4($event)" #fileUpload>
-
-        <div id="chapter4btn" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-        <div id="remove4btn" style="width: 15%; margin-top: -4.5%; margin-left: 14%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</div>  
       </div>
+      <button type="button" (click)="addNewMaterial()" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130);color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</button>
 
-      <div id="chapter5">
-        <div class="form-group">
-          <label for="chapter5name">Material Name: <b class="text-dangerous">*</b></label>
-          <input type="text" class="form-control" placeholder="Enter material name" id="chapter5nametxt" name="chapter5name" [(ngModel)]="chapter.chapter5name">
-        </div>
-
-        <input type="file" class="file-input"
-        (change)="onFileSelected5($event)" #fileUpload>
-
-        <div id="chapter5btn" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-        <div id="remove5btn" style="width: 15%; margin-top: -4.5%; margin-left: 14%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</div>  
-      </div>
-
-      <div id="chapter6">
-        <div class="form-group">
-          <label for="chapter6name">Material Name: <b class="text-dangerous">*</b></label>
-          <input type="text" class="form-control" placeholder="Enter material name" id="chapter6nametxt" name="chapter6name" [(ngModel)]="chapter.chapter6name">
-        </div>
-
-        <input type="file" class="file-input"
-        (change)="onFileSelected6($event)" #fileUpload>
-
-        <div id="chapter6btn" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-        <div id="remove6btn" style="width: 15%; margin-top: -4.5%; margin-left: 14%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</div>  
-      </div>
-
-      <div id="chapter7">
-        <div class="form-group">
-          <label for="chapter7name">Material Name: <b class="text-dangerous">*</b></label>
-          <input type="text" class="form-control" placeholder="Enter material name" id="chapter7nametxt" name="chapter7name" [(ngModel)]="chapter.chapter7name">
-        </div>
-
-        <input type="file" class="file-input"
-        (change)="onFileSelected7($event)" #fileUpload>
-
-        <div id="chapter7btn" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-        <div id="remove7btn" style="width: 15%; margin-top: -4.5%; margin-left: 14%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</div>  
-      </div>
-
-      <div id="chapter8">
-        <div class="form-group">
-          <label for="chapter8name">Material Name: <b class="text-dangerous">*</b></label>
-          <input type="text" class="form-control" placeholder="Enter material name" id="chapter8nametxt" name="chapter8name" [(ngModel)]="chapter.chapter8name">
-        </div>
-
-        <div id="chapter8btn" style="width: 12%; margin-top: 8px; cursor: pointer; background-color: rgb(15, 28, 130); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-plus"></i> Add</div>
-        <div id="remove8btn" style="width: 15%; margin-top: -4.5%; margin-left: 14%; cursor: pointer; background-color: rgb(201, 13, 13); color: white; font-weight: bold; border: none; font-size: small; outline: none; padding: 5px 15px 5px 15px; border-radius: 15px;"><i class="fa fa-trash"></i> Remove</div>  
-      </div>
-
-    <button style="margin-top: 15px;" [disabled]="addChapterform.form.invalid" type="submit" class="btn registerbtn"><i class="fa fa-plus"></i>&nbsp; Add Chapter</button>
+    <button style="margin-top: 15px;" [disabled]="addChapterform.form.invalid" type="submit" class="btn registerbtn"><i class="fa fa-plus"></i>&nbsp; Add Materials</button>
   </form>
 </div>

@@ -32,6 +32,7 @@ import { WelcomepageComponent } from './components/welcomepage/welcomepage.compo
 import { AddquizComponent } from './components/addquiz/addquiz.component';
 import { QuizlistComponent } from './components/quizlist/quizlist.component';
 import { AttemptquizComponent } from './components/attemptquiz/attemptquiz.component';
+import { AddtutorialComponent } from './components/addtutorial/addtutorial.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AttemptquizComponent } from './components/attemptquiz/attemptquiz.compo
     WelcomepageComponent,
     AddquizComponent,
     QuizlistComponent,
-    AttemptquizComponent
+    AttemptquizComponent,
+    AddtutorialComponent
   ],
   imports: [
     BrowserModule,

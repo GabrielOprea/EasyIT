@@ -38,6 +38,7 @@ export class CourselistComponent implements OnInit {
   basic_shown = false;
   intermediate_shown = false;
   advanced_shown = false;
+  justEnrolled: Map<string, boolean> | undefined ;
   @ViewChild('alertOne') alertOne: ElementRef | undefined;
 
   constructor(private _service: ProfessorService, private userService: UserService, private _router: Router) { }
@@ -54,6 +55,7 @@ export class CourselistComponent implements OnInit {
     this.intermediateCourses = this.userService.getIntermediateCourses();
     this.advancedCourses = this.userService.getAdvancedCourses();
     const target = 'https://www.youtube.com/iframe_api'
+    this.justEnrolled = new Map<string, boolean>();
 
     if (!this.isScriptLoaded(target)) {
       const tag = document.createElement('script')
@@ -72,6 +74,14 @@ export class CourselistComponent implements OnInit {
 
   }
 
+  navtoMaterials() {
+    this._router.navigate(['/addchapter']);
+  }
+
+  navtoTutorials() {
+    this._router.navigate(['/addtutorial']);
+  }
+
   isScriptLoaded(target: string): boolean {
     return document.querySelector('script[src="' + target + '"]') ? true : false
   }
@@ -81,6 +91,7 @@ export class CourselistComponent implements OnInit {
     $("#coursedetailscard").show();
     this.courselist = this.userService.getCourseListByName(coursename);
     this.enrollmentstatus = this.userService.getEnrollmentStatus(coursename, this.loggedUser, this.currRole);
+
     this.wishliststatus = this.userService.getWishlistStatus(coursename, this.loggedUser);
     this.enrollmentstatus.subscribe(val => { this.enrolledStatus = val });
     if (this.enrolledStatus[0] === "enrolled")
@@ -98,13 +109,11 @@ export class CourselistComponent implements OnInit {
     this.enrollment.coursename = course.coursename;
     this.enrollment.enrolledusertype = currRole;
     this.enrollment.instructorname = course.instructorname;
-    this.enrollment.instructorinstitution = course.instructorinstitution;
     this.enrollment.enrolledcount = course.enrolledcount;
-    this.enrollment.websiteurl = course.websiteurl;
-    this.enrollment.coursetype = course.coursetype;
     this.enrollment.skilllevel = course.skilllevel;
     this.enrollment.language = course.language;
     this.enrollment.description = course.description;
+    console.log(this.enrollment)
     this.enrolledID = course.courseid;
     this.enrolledName = course.coursename;
     this.enrolledInstructorName = course.instructorname;
@@ -116,15 +125,26 @@ export class CourselistComponent implements OnInit {
       $("#coursedetailscard").hide();
       $("#enrollsuccess").show();
     }, 5000);
-    this.userService.enrollNewCourse(this.enrollment, loggedUser, currRole).subscribe(
-      data => {
-        console.log("Course enrolled Successfully !!!");
-      },
-      error => {
-        console.log("Enrollment Failed !!!");
-        console.log(error.error);
-      }
-    );
+
+
+    this.enrollmentstatus = this.userService.getEnrollmentStatus(course.coursename, this.loggedUser, this.currRole);
+    this.enrollmentstatus.subscribe(val => { this.enrolledStatus = val });
+  
+    if (this.enrolledStatus.slice(0, 1).shift() === "enrolled" || this.justEnrolled?.get(course.coursename))
+      $("#alertThree").modal('show');
+    else {
+      this.userService.enrollNewCourse(this.enrollment, loggedUser, currRole).subscribe(
+        data => {
+          console.log("Course enrolled Successfully !!!");
+          this.justEnrolled?.set(course.coursename, true);
+          $("#alertTwo").modal('show');        
+        },
+        error => {
+          console.log("Enrollment Failed !!!");
+          console.log(error.error);
+        }
+      );
+    }
   }
 
   addToWishList(course: Course, loggedUser: string, currRole: string) {
@@ -169,7 +189,8 @@ export class CourselistComponent implements OnInit {
     this.enrollmentstatus = this.userService.getEnrollmentStatus(coursename, this.loggedUser, this.currRole);
     this.enrollmentstatus.subscribe(val => { this.enrolledStatus = val });
   
-    if (this.enrolledStatus.slice(0, 1).shift() === "enrolled") {
+    if (this.enrolledStatus.slice(0, 1).shift() === "enrolled" || this.justEnrolled?.get(coursename)
+    ) {
       this._router.navigate(['/fullcourse', coursename]);
       console.log("tst");
     }

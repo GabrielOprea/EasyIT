@@ -35,6 +35,8 @@ public class ProfessorController
 	private ChapterService chapterService;
   @Autowired
   private AnnouncementService announcementService;
+  @Autowired
+  private MaterialService materialService;
 
 	@Autowired
 	private WishlistService wishlistService;
@@ -219,6 +221,35 @@ public class ProfessorController
 		chapterObj = chapterService.addNewChapter(chapter);
 		return chapterObj;
 	}
+
+  @PostMapping("/addnewmaterials")
+  @CrossOrigin(origins = "http://localhost:4200")
+  public Material addNewMaterials(@RequestBody Material[] materials) throws Exception
+  {
+    Material materialObj = null;
+    for (Material mat: materials) {
+      if (mat.getMaterialid() != null) {
+        materialService.updateByMaterialid(mat);
+      } else {
+        String newID = getNewID();
+        mat.setMaterialid(newID);
+        materialObj = materialService.addNewMaterial(mat);
+      }
+    }
+    return materialObj;
+  }
+
+  @PostMapping("/deletematerials")
+  @CrossOrigin(origins = "http://localhost:4200")
+  public Material deleteMaterials(@RequestBody Material[] materials) throws Exception
+  {
+    Material matObj = null;
+    for (Material mat: materials) {
+      matObj = mat;
+      materialService.removeByMaterialid(mat.getMaterialid());
+    }
+    return matObj;
+  }
 
 	@GetMapping("/acceptstatus/{email}")
 	@CrossOrigin(origins = "http://localhost:4200")
