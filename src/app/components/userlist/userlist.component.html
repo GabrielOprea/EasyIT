@@ -12,14 +12,21 @@
             <div class="text"><b class="element" style="font-family: cursive; font-size: 22px;"> {{user.username}} </b>  <small style="font-weight: bold;"> ({{user.userid}}) </small></div>
             <br>
             <div class="text"><b class="element"> Phone number: </b>  {{user.mobile}} </div>
-            <div class="text"><b class="element"> University: </b> {{user.profession}} </div>
             <div class="text"><b class="element"> Email: </b> {{user.email}}</div>
             <br>
         </div>
         </div>
         <input type="text">
-        <div style="font-weight: 200;">
+        <br>
+        <button *ngIf="this.hasFeedback.get(user.username) !== true" (click) = "giveFeedbackTo(user)" style="font-weight: 200;background-color: #5d075d;height: 34px;">
+            <p style="color:white">
             Give feedback
+            </p>
+        </button>
+        <div *ngIf="this.hasFeedback.get(user.username) == true" (click) = "giveFeedbackTo(user)" style="font-weight: 200;">
+            <p style="color:#ff00c0; font-weight:400">
+            Feedback submited successfully !
+            </p>
         </div>
     </div>
 </div>

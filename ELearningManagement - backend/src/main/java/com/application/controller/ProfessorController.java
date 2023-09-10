@@ -145,6 +145,7 @@ public class ProfessorController
       q.setVard("Nesatisfacator");
       q.setQuestionid(getNewID());
       q.setQuizid(quiz.getQuizid());
+      q.setCorrectvar("None");
 
       questionService.addNewQuestion(q);
     }

@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserlistComponent implements OnInit {
 
   users : Observable<User[]> | undefined;
-
+  hasFeedback: Map<String, Boolean> = new Map<String, Boolean>();
   constructor(private _serive : UserService) { }
 
   ngOnInit(): void 
@@ -19,5 +19,7 @@ export class UserlistComponent implements OnInit {
     this.users = this._serive.getAllUsers();
     //this.users = this._serive.getAllUsers();
   }
-
+  giveFeedbackTo(user: User) {
+    this.hasFeedback?.set(user.username, true);
+  }
 }

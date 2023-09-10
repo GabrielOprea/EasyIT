@@ -58,6 +58,6 @@ export class AttemptquizComponent implements OnInit{
     this._userService.sendReview(this.review, this.quizid).subscribe(data => {
       console.log("Review sent");
     })
-    this._router.navigate(['..'])
+    this._router.navigate(['/courselist'])
   }
 }

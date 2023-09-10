@@ -4,17 +4,17 @@
     <div class="container">
       <div class="row">
         <div class="headtxt" style="color: rgb(37, 7, 7); font-weight: bolder; font-family: aladin; letter-spacing: 1px; font-size: 40px; margin: 0% 0% 1% 20%;"><b>Welcome to {{name}}'s Dashboard</b></div>
-          <div class="dashboard-card"style="background-color: white; box-shadow: 4px 4px 25px 5px gray;">
+          <div (click)="this.gotoCourses()" class="dashboard-card"style="background-color: white; box-shadow: 4px 4px 25px 5px gray;">
             <i id="icons" style="display: inline;" class="fa fa-list"></i>
             <div class="text" style=" display: inline; font-family: 'aladin'; letter-spacing: 1px; font-size: 35px; font-weight: bolder;">Courses</div>
             <div class="sub-text" *ngFor="let course of courses | async">{{course}} courses available</div>
           </div>
-          <div class="dashboard-card" style="background-color: white; box-shadow: 4px 4px 25px 5px gray;">
+          <div (click)="this.gotoLearners()" class="dashboard-card" style="background-color: white; box-shadow: 4px 4px 25px 5px gray;">
             <i id="icons" class="fa fa-graduation-cap" style="display: inline;"></i>
             <div class="text" style="display: inline; font-family: 'aladin'; letter-spacing: 1px; font-size: 35px; font-weight: bolder; ">Learners</div>
             <div class="sub-text" *ngFor="let count of enrollmentcount | async">{{count}} enrollments have been made by <div style="display: inline;"  *ngFor="let enrollment of enrollments | async">{{enrollment}}</div> Learners</div>
           </div>
-          <div class="dashboard-card" style="background-color: white; box-shadow: 4px 4px 25px 5px gray;">
+          <div (click)="this.gotoInstructors()" class="dashboard-card" style="background-color: white; box-shadow: 4px 4px 25px 5px gray;">
             <i id="icons" style="display: inline;" class="fa fa-user-o"></i>
             <div class="text" style=" display: inline; font-family: 'aladin'; letter-spacing: 1px; font-size: 35px; font-weight: bolder; ">Instructors</div>
             <div class="sub-text" *ngFor="let professor of professors | async">{{professor}} instructors on this platform</div>

@@ -19,6 +19,11 @@ export class HeaderComponent implements OnInit {
     return sessionStorage.getItem('loggedUser');
   }
 
+  getCrtRole(): string | null {
+    let resp = JSON.stringify(sessionStorage.getItem('ROLE')|| '{}').replace(/"/g, '');
+    return resp;
+  }
+
   ngOnInit(): void 
   {
     this.loggedUser = JSON.stringify(sessionStorage.getItem('loggedUser')|| '{}');
@@ -47,6 +52,9 @@ export class HeaderComponent implements OnInit {
     sessionStorage.clear();
     this._router.navigate(['/']);
     this.loggedUser = '';
+    if (this.shown) {
+      this.showMenu();
+    }
   }
 
   navigateHome()

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -17,7 +18,7 @@ export class UserdashboardComponent implements OnInit {
   wishlist : Observable<any[]> | undefined;
   professors : Observable<any[]> | undefined;
   
-  constructor(private _service : AdminService) {}
+  constructor(private _service : AdminService, private router: Router) {}
 
   ngOnInit(): void 
   {
@@ -53,6 +54,18 @@ export class UserdashboardComponent implements OnInit {
     this.wishlist = this._service.getTotalWishlist();
     this.professors = this._service.getTotalProfessors();
 
+  }
+
+  gotoCourses() {
+    this.router.navigate(['/courselist']);
+  }
+
+  gotoLearners() {
+    this.router.navigate(['/userlist']);
+  }
+  
+  gotoInstructors() {
+    this.router.navigate(['/professorlist']);
   }
 
 }

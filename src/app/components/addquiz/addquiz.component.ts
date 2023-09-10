@@ -53,7 +53,7 @@ export class AddquizComponent implements OnInit{
             }
           )
         }
-        //this._router.navigate(['/addchapter']);
+        this._router.navigate(['/courselist']);
       },
       error => {
         console.log(this.quiz);

@@ -11,7 +11,7 @@
 
             <div style="margin-top: 7.5%; margin-bottom: 3%;">
                 <a  *ngIf="currRole=='professor'" (click)="editQuiz(data.quizid)" style="border: none; background-color: rgb(121, 91, 108); margin-right: 2%;" class="btn btn-primary">Edit Quiz</a>
-                <a   *ngIf="currRole=='user'" (click)="attemptQuiz(data.quizid)" style="border: none; background-color: rgb(58, 11, 11); " class="btn btn-primary">Attempt Quiz</a>
+                <a   *ngIf="currRole=='user' && getStatus(data) != 'Complete'" (click)="attemptQuiz(data.quizid)" style="border: none; background-color: rgb(58, 11, 11); " class="btn btn-primary">Attempt Quiz</a>
             </div>
         </div>
     </div>
